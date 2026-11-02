@@ -3,6 +3,7 @@ results/build/
 results/logs/
 results/regression/
 results/mutation/
+results/synth/
 
 # Waveforms and simulator databases
 *.vcd

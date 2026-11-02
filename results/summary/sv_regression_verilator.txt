@@ -1,0 +1,125 @@
+Regression summary
+  flow      : sv
+  simulator : verilator
+  date      : 2026-11-02 18:59:22 +0000
+  configs   : small default wide deep npot
+  seeds     : random=[1 2 3] stress=[1 2]
+  runs      : 105   passed: 105   failed: 0
+
+config   test                           seed  result cycles   mism   sva    cov%    
+small    reset_test                     1     PASS   24       0      0      75.37   
+small    basic_write_test               1     PASS   11       0      0      70.93   
+small    basic_read_test                1     PASS   20       0      0      87.50   
+small    fill_test                      1     PASS   12       0      0      70.93   
+small    empty_test                     1     PASS   18       0      0      85.93   
+small    overflow_test                  1     PASS   24       0      0      86.48   
+small    underflow_test                 1     PASS   26       0      0      64.35   
+small    simultaneous_rw_test           1     PASS   38       0      0      96.30   
+small    pointer_wrap_test              1     PASS   74       0      0      95.56   
+small    reset_mid_operation_test       1     PASS   40       0      0      87.78   
+small    random_balanced_test           1     PASS   1004     0      0      100.00  
+small    random_balanced_test           2     PASS   1004     0      0      100.00  
+small    random_balanced_test           3     PASS   1004     0      0      100.00  
+small    random_write_heavy_test        1     PASS   1004     0      0      99.54   
+small    random_write_heavy_test        2     PASS   1004     0      0      98.52   
+small    random_write_heavy_test        3     PASS   1004     0      0      99.54   
+small    random_read_heavy_test         1     PASS   1004     0      0      99.07   
+small    random_read_heavy_test         2     PASS   1004     0      0      99.54   
+small    random_read_heavy_test         3     PASS   1004     0      0      99.54   
+small    stress_test                    1     PASS   10004    0      0      100.00  
+small    stress_test                    2     PASS   10004    0      0      100.00  
+default  reset_test                     1     PASS   24       0      0      68.15   
+default  basic_write_test               1     PASS   11       0      0      58.06   
+default  basic_read_test                1     PASS   20       0      0      70.93   
+default  fill_test                      1     PASS   24       0      0      74.63   
+default  empty_test                     1     PASS   42       0      0      89.63   
+default  overflow_test                  1     PASS   48       0      0      86.48   
+default  underflow_test                 1     PASS   26       0      0      64.35   
+default  simultaneous_rw_test           1     PASS   98       0      0      98.15   
+default  pointer_wrap_test              1     PASS   458      0      0      95.56   
+default  reset_mid_operation_test       1     PASS   58       0      0      86.11   
+default  random_balanced_test           1     PASS   1004     0      0      100.00  
+default  random_balanced_test           2     PASS   1004     0      0      100.00  
+default  random_balanced_test           3     PASS   1004     0      0      99.54   
+default  random_write_heavy_test        1     PASS   1004     0      0      98.98   
+default  random_write_heavy_test        2     PASS   1004     0      0      96.39   
+default  random_write_heavy_test        3     PASS   1004     0      0      97.50   
+default  random_read_heavy_test         1     PASS   1004     0      0      84.07   
+default  random_read_heavy_test         2     PASS   1004     0      0      84.07   
+default  random_read_heavy_test         3     PASS   1004     0      0      84.07   
+default  stress_test                    1     PASS   10004    0      0      100.00  
+default  stress_test                    2     PASS   10004    0      0      100.00  
+wide     reset_test                     1     PASS   24       0      0      68.15   
+wide     basic_write_test               1     PASS   11       0      0      58.06   
+wide     basic_read_test                1     PASS   20       0      0      70.93   
+wide     fill_test                      1     PASS   24       0      0      74.63   
+wide     empty_test                     1     PASS   42       0      0      89.63   
+wide     overflow_test                  1     PASS   48       0      0      86.48   
+wide     underflow_test                 1     PASS   26       0      0      64.35   
+wide     simultaneous_rw_test           1     PASS   98       0      0      98.15   
+wide     pointer_wrap_test              1     PASS   458      0      0      95.56   
+wide     reset_mid_operation_test       1     PASS   58       0      0      86.11   
+wide     random_balanced_test           1     PASS   1004     0      0      100.00  
+wide     random_balanced_test           2     PASS   1004     0      0      100.00  
+wide     random_balanced_test           3     PASS   1004     0      0      99.54   
+wide     random_write_heavy_test        1     PASS   1004     0      0      98.98   
+wide     random_write_heavy_test        2     PASS   1004     0      0      96.39   
+wide     random_write_heavy_test        3     PASS   1004     0      0      97.50   
+wide     random_read_heavy_test         1     PASS   1004     0      0      84.07   
+wide     random_read_heavy_test         2     PASS   1004     0      0      84.07   
+wide     random_read_heavy_test         3     PASS   1004     0      0      84.07   
+wide     stress_test                    1     PASS   10004    0      0      100.00  
+wide     stress_test                    2     PASS   10004    0      0      100.00  
+deep     reset_test                     1     PASS   24       0      0      68.15   
+deep     basic_write_test               1     PASS   11       0      0      56.39   
+deep     basic_read_test                1     PASS   20       0      0      68.15   
+deep     fill_test                      1     PASS   72       0      0      74.63   
+deep     empty_test                     1     PASS   138      0      0      89.63   
+deep     overflow_test                  1     PASS   144      0      0      86.48   
+deep     underflow_test                 1     PASS   26       0      0      64.35   
+deep     simultaneous_rw_test           1     PASS   338      0      0      98.15   
+deep     pointer_wrap_test              1     PASS   4874     0      0      95.56   
+deep     reset_mid_operation_test       1     PASS   130      0      0      87.96   
+deep     random_balanced_test           1     PASS   1004     0      0      86.30   
+deep     random_balanced_test           2     PASS   1004     0      0      84.07   
+deep     random_balanced_test           3     PASS   1004     0      0      84.07   
+deep     random_write_heavy_test        1     PASS   1004     0      0      99.54   
+deep     random_write_heavy_test        2     PASS   1004     0      0      97.50   
+deep     random_write_heavy_test        3     PASS   1004     0      0      97.50   
+deep     random_read_heavy_test         1     PASS   1004     0      0      80.74   
+deep     random_read_heavy_test         2     PASS   1004     0      0      80.74   
+deep     random_read_heavy_test         3     PASS   1004     0      0      80.74   
+deep     stress_test                    1     PASS   10004    0      0      100.00  
+deep     stress_test                    2     PASS   10004    0      0      100.00  
+npot     reset_test                     1     PASS   24       0      0      70.37   
+npot     basic_write_test               1     PASS   11       0      0      58.61   
+npot     basic_read_test                1     PASS   20       0      0      71.48   
+npot     fill_test                      1     PASS   18       0      0      70.93   
+npot     empty_test                     1     PASS   30       0      0      87.78   
+npot     overflow_test                  1     PASS   36       0      0      86.48   
+npot     underflow_test                 1     PASS   26       0      0      64.35   
+npot     simultaneous_rw_test           1     PASS   68       0      0      98.15   
+npot     pointer_wrap_test              1     PASS   230      0      0      95.56   
+npot     reset_mid_operation_test       1     PASS   49       0      0      84.81   
+npot     random_balanced_test           1     PASS   1004     0      0      100.00  
+npot     random_balanced_test           2     PASS   1004     0      0      100.00  
+npot     random_balanced_test           3     PASS   1004     0      0      100.00  
+npot     random_write_heavy_test        1     PASS   1004     0      0      98.98   
+npot     random_write_heavy_test        2     PASS   1004     0      0      96.39   
+npot     random_write_heavy_test        3     PASS   1004     0      0      97.50   
+npot     random_read_heavy_test         1     PASS   1004     0      0      84.07   
+npot     random_read_heavy_test         2     PASS   1004     0      0      84.07   
+npot     random_read_heavy_test         3     PASS   1004     0      0      84.07   
+npot     stress_test                    1     PASS   10004    0      0      100.00  
+npot     stress_test                    2     PASS   10004    0      0      100.00  
+
+Merged functional coverage per configuration
+| Config | Runs | fifo_cg bins | fifo_cg coverage | incl. reset bins | Never hit |
+|---|---|---|---|---|---|
+| deep | 21 | 73/73 | 100.00 % | 100.00 % | none |
+| default | 21 | 73/73 | 100.00 % | 100.00 % | none |
+| npot | 21 | 73/73 | 100.00 % | 100.00 % | none |
+| small | 21 | 73/73 | 100.00 % | 100.00 % | none |
+| wide | 21 | 73/73 | 100.00 % | 100.00 % | none |
+
+Coverage is the mean of the per-coverpoint/cross percentages (covergroup default weighting), merged over all runs of each configuration.

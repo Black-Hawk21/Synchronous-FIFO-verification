@@ -1,0 +1,24 @@
+Mutation testing summary
+  simulator : verilator
+  date      : 2026-11-02 19:05:48 +0000
+  configs   : default npot
+  tests     : reset_test basic_write_test basic_read_test fill_test empty_test overflow_test underflow_test simultaneous_rw_test pointer_wrap_test reset_mid_operation_test random_balanced_test random_write_heavy_test (seed 1)
+  killed    : 12 of 12 mutants
+
+KILLED f/n = f of n tests failed; (scoreboard a, SVA b, checks c) = number of
+failing tests in which the scoreboard / an assertion / a directed check reported it.
+
+| Mutant | default (W=8  D=16) | npot (W=8  D=10) | Injected bug |
+|---|---|---|---|
+| write_when_full | KILLED 4/12 (scoreboard 4, SVA 4, checks 2) | KILLED 4/12 (scoreboard 4, SVA 4, checks 2) | write accepted while full (overflow corrupts data) |
+| read_when_empty | KILLED 5/12 (scoreboard 5, SVA 5, checks 3) | KILLED 5/12 (scoreboard 5, SVA 5, checks 3) | read accepted while empty (underflow moves rd_ptr) |
+| write_priority_when_full | KILLED 3/12 (scoreboard 3, SVA 3, checks 1) | KILLED 3/12 (scoreboard 3, SVA 3, checks 1) | simultaneous read+write while full also performs the write |
+| rd_ptr_no_wrap | survived 0/12 | KILLED 6/12 (scoreboard 4, SVA 6, checks 0) | read pointer relies on natural overflow instead of explicit wrap |
+| wr_ptr_wraps_early | KILLED 8/12 (scoreboard 6, SVA 8, checks 1) | KILLED 8/12 (scoreboard 6, SVA 8, checks 1) | write pointer wraps at DEPTH-2 instead of DEPTH-1 |
+| data_out_not_held | KILLED 12/12 (scoreboard 12, SVA 12, checks 3) | KILLED 12/12 (scoreboard 12, SVA 12, checks 3) | data_out reloads every cycle instead of only on accepted reads |
+| full_one_early | KILLED 8/12 (scoreboard 8, SVA 8, checks 2) | KILLED 8/12 (scoreboard 8, SVA 8, checks 2) | full asserted at DEPTH-1 entries |
+| almost_full_off_by_one | KILLED 8/12 (scoreboard 8, SVA 8, checks 1) | KILLED 8/12 (scoreboard 8, SVA 8, checks 1) | almost_full uses > instead of >= |
+| almost_empty_off_by_one | KILLED 12/12 (scoreboard 12, SVA 12, checks 2) | KILLED 12/12 (scoreboard 12, SVA 12, checks 2) | almost_empty uses < instead of <= |
+| count_wrong_on_simultaneous | KILLED 4/12 (scoreboard 4, SVA 4, checks 0) | KILLED 4/12 (scoreboard 4, SVA 4, checks 0) | occupancy increments when a read and a write are both accepted |
+| reset_keeps_data_out | KILLED 2/12 (scoreboard 2, SVA 2, checks 1) | KILLED 2/12 (scoreboard 2, SVA 2, checks 1) | reset does not clear data_out |
+| read_returns_newest | KILLED 8/12 (scoreboard 8, SVA 0, checks 0) | KILLED 8/12 (scoreboard 8, SVA 0, checks 0) | read returns the entry at the write pointer side (LIFO-like) |

@@ -1,0 +1,8 @@
+Yosys 0.33 generic synthesis (synth -flatten; check -assert), commit 30ee99d
+
+config   params     cells   state flops  storage flops  result
+small    W=8 D=4    110     15           32             OK
+default  W=8 D=16   375     21           128            OK
+wide     W=32 D=16  1143    45           512            OK
+deep     W=8 D=64   1303    27           512            OK
+npot     W=8 D=10   252     20           80             OK

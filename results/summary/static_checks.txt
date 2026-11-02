@@ -1,0 +1,26 @@
+Static checks  (commit 30ee99d, 2026-11-02 18:59 +0000)
+Tools: Verilator 5.048 (PyPI build), Icarus Verilog 12.0, slang 12.1 (pyslang), Accellera UVM 2020.3.1
+
+== RTL lint: verilator --lint-only -Wall / iverilog -g2012
+  small    W=8  D=4   verilator warnings/errors: 0   iverilog messages: 0
+  default  W=8  D=16  verilator warnings/errors: 0   iverilog messages: 0
+  wide     W=32 D=16  verilator warnings/errors: 0   iverilog messages: 0
+  deep     W=8  D=64  verilator warnings/errors: 0   iverilog messages: 0
+  npot     W=8  D=10  verilator warnings/errors: 0   iverilog messages: 0
+  invalid parameters (DEPTH=1, ALMOST_FULL_LEVEL=20): elaboration fails (exit 1) with 3 parameter-check messages
+    (DEPTH must be >= 2; ALMOST_FULL_LEVEL out of range; ALMOST_EMPTY_LEVEL out of range)
+
+== slang elaboration, SV testbench (rtl + sv_tb)
+  small    diagnostics=0 errors=0
+  default  diagnostics=0 errors=0
+  wide     diagnostics=0 errors=0
+  deep     diagnostics=0 errors=0
+  npot     diagnostics=0 errors=0
+
+== slang elaboration, UVM testbench (rtl + uvm_tb + sv_tb/fifo_assertions.sv + UVM 2020.3.1, +define+UVM_NO_DPI, --timescale 1ns/1ps)
+   (diagnostics include the UVM library's own warnings; 'project' counts only rtl/, uvm_tb/, sv_tb/ files)
+  small    diagnostics=1102 errors=0  project errors=0 warnings=0
+  default  diagnostics=1096 errors=0  project errors=0 warnings=0
+  wide     diagnostics=1101 errors=0  project errors=0 warnings=0
+  deep     diagnostics=1102 errors=0  project errors=0 warnings=0
+  npot     diagnostics=1098 errors=0  project errors=0 warnings=0
