@@ -1,0 +1,36 @@
+# Simulation outputs (regenerate with scripts/regression.sh)
+results/build/
+results/logs/
+results/regression/
+results/mutation/
+
+# Waveforms and simulator databases
+*.vcd
+*.fst
+*.wlf
+*.ucdb
+*.vdb/
+*.shm/
+coverage.dat
+
+# Simulator work/scratch directories
+work/
+csrc/
+simv
+simv.daidir/
+xcelium.d/
+INCA_libs/
+obj_dir/
+transcript
+ucli.key
+vc_hdrs.h
+*.log
+!results/summary/*.log
+
+# Editors / OS
+.vscode/
+.idea/
+*.swp
+*~
+.DS_Store
+__pycache__/
