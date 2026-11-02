@@ -26,6 +26,7 @@ class fifo_transaction;
   rand bit    wr_en;
   rand bit    rd_en;
   rand data_t data_in;
+  rand bit [1:0] data_kind;   // 0: all zeros, 1: all ones, 2: other (see c_data_kind)
 
   // Distribution knobs (relative weights; set before randomize())
   int unsigned wt_write     = 40;
@@ -72,9 +73,17 @@ class fifo_transaction;
     rst dist { 1'b1 := rst_permille, 1'b0 := 1000 - rst_permille };
   }
 
-  // Bias data toward the corner values so they are hit at any DATA_WIDTH
+  // Bias data toward the corner values so they are hit at any DATA_WIDTH:
+  // 5 % all zeros, 5 % all ones, 90 % any other value. The kind is chosen
+  // with a single-value dist and data_in is constrained from it (a weighted
+  // dist range with parameterized bounds is not honoured by Verilator 5.048).
+  constraint c_data_kind {
+    data_kind dist { 2'd0 := 1, 2'd1 := 1, 2'd2 := 18 };
+  }
   constraint c_data_corners {
-    data_in dist { data_t'(0) := 1, DATA_MAX := 1, [1 : DATA_MAX - 1] :/ 18 };
+    (data_kind == 2'd0) -> (data_in == '0);
+    (data_kind == 2'd1) -> (data_in == DATA_MAX);
+    (data_kind == 2'd2) -> (data_in != '0 && data_in != DATA_MAX);
   }
 
   //----------------------------------------------------------------------------

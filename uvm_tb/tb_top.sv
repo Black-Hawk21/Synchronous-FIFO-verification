@@ -23,6 +23,9 @@ module tb_top;
   if (DEPTH < 4) begin : g_tb_depth_check
     $error("tb_top: the testbench needs DEPTH >= 4 (got %0d)", DEPTH);
   end
+  if (DATA_WIDTH < 2) begin : g_tb_width_check
+    $error("tb_top: the testbench needs DATA_WIDTH >= 2 (got %0d)", DATA_WIDTH);
+  end
 
   logic clk;
   initial clk = 1'b0;

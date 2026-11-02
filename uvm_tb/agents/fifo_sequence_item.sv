@@ -18,6 +18,7 @@ class fifo_sequence_item extends uvm_sequence_item;
   rand bit    wr_en;
   rand bit    rd_en;
   rand data_t data_in;
+  rand bit [1:0] data_kind;   // 0: all zeros, 1: all ones, 2: other (see c_data_kind)
 
   // Distribution knobs (relative weights), set before randomize()
   int unsigned wt_write     = 40;
@@ -60,8 +61,17 @@ class fifo_sequence_item extends uvm_sequence_item;
     rst dist { 1'b1 := rst_permille, 1'b0 := 1000 - rst_permille };
   }
 
+  // Bias data toward the corner values so they are hit at any DATA_WIDTH:
+  // 5 % all zeros, 5 % all ones, 90 % any other value. The kind is chosen
+  // with a single-value dist and data_in is constrained from it (a weighted
+  // dist range with parameterized bounds is not honoured by Verilator 5.048).
+  constraint c_data_kind {
+    data_kind dist { 2'd0 := 1, 2'd1 := 1, 2'd2 := 18 };
+  }
   constraint c_data_corners {
-    data_in dist { data_t'(0) := 1, DATA_MAX := 1, [1 : DATA_MAX - 1] :/ 18 };
+    (data_kind == 2'd0) -> (data_in == '0);
+    (data_kind == 2'd1) -> (data_in == DATA_MAX);
+    (data_kind == 2'd2) -> (data_in != '0 && data_in != DATA_MAX);
   }
 
   function new(string name = "fifo_sequence_item");
@@ -104,6 +114,7 @@ class fifo_sequence_item extends uvm_sequence_item;
     wr_en           = rhs_.wr_en;
     rd_en           = rhs_.rd_en;
     data_in         = rhs_.data_in;
+    data_kind       = rhs_.data_kind;
     wt_write        = rhs_.wt_write;
     wt_read         = rhs_.wt_read;
     wt_both         = rhs_.wt_both;
